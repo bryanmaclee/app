@@ -1,4 +1,4 @@
-import { insertItem, db } from "./db.js";
+import { insertItem, msgs } from "./db.js";
 
 const recipId = "them";
 const user = {
@@ -26,7 +26,7 @@ Bun.serve({
       },
       "/msgs/load": {
          GET: () => {
-            const posts = db.query("SELECT text FROM items").all();
+            const posts = msgs.query("SELECT text FROM items").all();
             return Response.json(posts);
          },
       },
