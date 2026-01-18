@@ -1,0 +1,22 @@
+body {
+  font-family: system-ui, sans-serif;
+  padding: 2rem;
+   background-color: #234;
+}
+
+.input-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  width: 250px;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
