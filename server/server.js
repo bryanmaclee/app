@@ -1,5 +1,10 @@
 import { insertItem, db } from "./db.js";
 
+const recipId = "them";
+const user = {
+   userId: "me",
+};
+
 // const server =
 Bun.serve({
    port: 3030,
@@ -11,10 +16,10 @@ Bun.serve({
       },
       "/msgs/add": {
          POST: async (req) => {
-            const { text } = await req.json();
+            const { text, sender, recip } = await req.json();
 
             if (typeof text === "string" && text.trim()) {
-               insertItem.run(text.trim());
+               insertItem.run(text.trim(), sender, recip);
             }
             return new Response("ok");
          },
