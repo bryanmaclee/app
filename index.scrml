@@ -1,0 +1,40 @@
+<!-- <!doctype html> -->
+<app port=3030 
+   hostname="app.com" /> 
+<html lang="en" onLoad=${ >
+<head>
+   <meta charset="utf-8" />
+   <title>Bun SQLite App</title>
+   <link rel="stylesheet" href="/style.css" />
+      <:user ...>
+         IO{SELECT * FROM users WHERE username = 'desired_username'}
+      </user>
+</head>
+<body>
+  <h1>Bun + SQLite</h1>
+      <div id="msgs">
+
+      </div>
+      <:recip id>
+         <select resolve>
+            <#option value=${toLowerCase(content)}>
+               :user.contacts.id
+               // [jim, jack, jon]
+            </option>
+            <div id="msgsOut" src=${recip()}>
+               #{ SELECT text FROM items WHERE ${.src}}
+      </div>
+      <input id="text" placeholder="Type something..." />
+      <button id="add" onClick=${
+            lin value = ID(text).value.trim();
+            IO{
+               #{
+                  INSERT INTO items (text, sender, recip) 
+                  VALUES (value,:user.id,recip),
+               };
+            }>Add</button>
+         </div>
+      <button id="send">send</button>
+   <script src="/app.js"></script>
+</body>
+</html>

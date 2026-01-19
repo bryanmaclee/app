@@ -1,21 +1,24 @@
 <!-- <!doctype html> -->
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>Bun SQLite App</title>
-  <link rel="stylesheet" href="/style.css" />
-</head>
-<body>
-  <h1>Bun + SQLite</h1>
-
-  <div class="input-row">
-    <input id="text" placeholder="Type something..." />
-    <button id="add">Add</button>
-  </div>
-
-      <div id="out"></div>
-      <div id="msgs"></div>
-      <button id="send">send</button>
-  <script src="/app.js"></script>
-</body>
+   <head>
+      <meta charset="utf-8" />
+      <title>Bun SQLite App</title>
+      <link rel="stylesheet" href="/style.css" />
+   </head>
+   <body>
+      <div id="msgs">
+         <div id="out-field"></div>
+         <div class="input-row">
+            <input id="text" placeholder="Type something..." />
+            <button id="send">send</button>
+         </div>
+      </div>
+      <div id="navBar">
+         <ul id="navButtons">
+            <li id="homeBtn">home</li>
+            <li id="msgBtn">msgs</li>
+         </ul>
+      </div>
+      <script src="/app.js"></script>
+   </body>
 </html>
