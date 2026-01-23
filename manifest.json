@@ -1,0 +1,36 @@
+{
+   "name": "Darn_crud",
+   "short_name": "dc",
+   "icons": [
+      {
+         "src": "favicon_io/android-chrome-192x192.png",
+         "sizes": "192x192",
+         "type": "image/png"
+      },
+      {
+         "src": "favicon_io/android-chrome-512x512.png",
+         "sizes": "512x512",
+         "type": "image/png"
+      }
+   ],
+   "theme_color": "#ffffff",
+   "background_color": "#ffffff",
+   "display": "standalone",
+   "start_url": "/",
+   "screenshots": [
+      {
+         "src": "image2.png",
+         "sizes": "320x640",
+         "type": "image/png",
+         "form_factor": "narrow",
+         "label": "Wonder Widgets"
+      },
+      {
+         "src": "image1.png",
+         "sizes": "640x360",
+         "type": "image/png",
+         "form_factor": "wide",
+         "label": "Wonder Widgets wide"
+      }
+   ]
+}

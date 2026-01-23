@@ -1,5 +1,6 @@
 * {
    box-sizing: border-box;
+   font-size: 1.5rem;
 }
 
 body {
@@ -7,6 +8,11 @@ body {
   /* padding: 2rem; */
    margin: 0;
    background-color: #234;
+   /* overflow: hidden; */
+   padding-top: env(safe-area-inset-top);
+   padding-bottom: env(safe-area-inset-bottom);
+   height: 80vh;
+   width: 100vw;
    overflow: hidden;
 }
 
@@ -18,8 +24,8 @@ body {
    
 
 #app {
-   /* border: 2px solid pink; */
-   height: 100vh;
+   border: 2px solid pink;
+   height: 80vh;
    display: flex;
    flex-direction: column;
    justify-content: space-between;
@@ -52,11 +58,12 @@ body {
 
 #msgHist {
    display: flex;
-   flex-grow: 1;
+   /* flex-grow: 1; */
    padding: 0.5rem;
    font-size: 1rem;
    flex-direction: column-reverse;
    gap: 1rem;
+   overflow: hidden;
 }
 
 .msgIn {

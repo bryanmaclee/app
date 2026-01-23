@@ -6,6 +6,8 @@ const user = {
    userId: "me",
 };
 
+const appFiles = ["/app.js", "/style.css"];
+
 Bun.serve({
    port: 3030,
    // hostname: "bun.com",
@@ -56,10 +58,18 @@ Bun.serve({
          if (path === "/favicon.ico" || path.startsWith("/.well-known"))
             return false;
          console.log("this is caught", req.url);
-         const file = Bun.file(`public${path}`);
+         console.log(path);
+         let file;
+         if (appFiles.includes(path)) {
+            file = Bun.file(`public${path}`);
+         } else {
+            file = Bun.file(`${path.substring(1)}`);
+         }
          return new Response(file);
       },
    },
+   certFile: "localhost+2.pem",
+   keyFile: "localhost+2-key.pem",
    error(er) {
       console.error("this is the error", er);
    },
