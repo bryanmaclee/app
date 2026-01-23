@@ -32,6 +32,10 @@ body {
       /* width: 100vw; */
 }
 
+#content {
+   border: 2px solid pink;
+}
+
 .input-row {
   display: flex;
    /* border: 2px solid black; */
@@ -46,6 +50,45 @@ body {
 /*   width: 250px; */
 /* } */
 
+#msgHist {
+   display: flex;
+   flex-grow: 1;
+   padding: 0.5rem;
+   font-size: 1rem;
+   flex-direction: column-reverse;
+   gap: 1rem;
+}
+
+.msgIn {
+   display: flex;
+   justify-content: right;
+}
+
+.msgOut {
+   display: flex;
+   justify-content: left;
+}
+
+.in {
+   display: flex;
+   justify-content: right;
+   justify-self: right;
+   font-size: 22pt;
+   padding: 0.5rem;
+   background-color: #456;
+   border: 2px solid #456;
+   border-radius: 15px 3px 15px 15px;
+}
+
+.out {
+   display: flex;
+   font-size: 22pt;
+   padding: 0.5rem;
+   background-color: #123;
+   border: 2px solid #123;
+   border-radius: 15px 15px 15px 3px;
+}
+
 #msgText {
    flex-grow: 1;
   padding: 0.5rem;
@@ -53,6 +96,11 @@ body {
   /* width: 250px; */
 }
 
+#msgBox {
+   display: flex;
+   flex-grow: 1;
+   flex-direction: column;
+}
 /* button { */
 /*   padding: 0.5rem 1rem; */
 /*   font-size: 1rem; */
@@ -65,6 +113,7 @@ body {
 }
 
 #content {
+   display: flex;
    flex-grow: 1;
    /* border: 2px solid white; */
    padding: 1rem;

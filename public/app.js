@@ -9,22 +9,33 @@ const user = {
    userId: "me",
 };
 
-sendButton.addEventListener("click", async () => {
-   const value = input.value.trim();
-   if (!value) return;
-
-   await fetch("/msgs/add", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-         text: value,
-         sender: user.userId,
-         recip: recipId,
-      }),
+msgBtn.addEventListener("click", async () => {
+   const blah = await fetch("/app/swap", {
+      method: "GET",
+      headers: { "Content-Type": "text/html; charset=utf-8" },
    });
-
-   input.value = "";
+   // out.outerHTML = await blah.text();
+   // console.log(await blah.text());
+   swap("content", await blah.text());
+   // swap("msgHist", await msgsMU(
 });
+
+// sendButton.addEventListener("click", async () => {
+//    const value = input.value.trim();
+//    if (!value) return;
+//
+//    await fetch("/msgs/add", {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({
+//          text: value,
+//          sender: user.userId,
+//          recip: recipId,
+//       }),
+//    });
+//
+//    input.value = "";
+// });
 
 userBtn.addEventListener("click", async () => {
    console.log("not the problem");
@@ -49,14 +60,6 @@ userBtn.addEventListener("click", async () => {
 //    }
 //    out.innerHTML = msgStr;
 // };
-
-msgBtn.addEventListener("click", async () => {
-   const blah = await fetch("/app/swap", {
-      method: "GET",
-      headers: { "Content-Type": "text/html; charset=utf-8" },
-   });
-   out.outerHTML = await blah.text();
-});
 
 function swap(oel, nel, side = "inner") {
    const swapEl = document.getElementById(oel);

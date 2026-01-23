@@ -40,12 +40,10 @@ Bun.serve({
       },
       "/app/swap": {
          GET: async (req) => {
-            console.log("ahhdshshhh");
-            const htmlFrag = `
-               <div>what up bitches
-               <div>what up bitches</div>
-</div>`;
-            return new Response(htmlFrag, {
+            const url = new URL(req.url);
+            const htmlFrag = Bun.file("public/msngr.html");
+            // console.log(await htmlFrag.text());
+            return new Response(await htmlFrag, {
                headers: {
                   "Content-Type": "text/html",
                },
