@@ -1,11 +1,11 @@
-import { insertItem, msgs } from "./db.js";
+import { insertItem, db, createUser, createUserMsgs } from "./db.js";
+import sharp from "sharp";
 
 const recipId = "them";
 const user = {
    userId: "me",
 };
 
-// const server =
 Bun.serve({
    port: 3030,
    // hostname: "bun.com",
@@ -26,8 +26,30 @@ Bun.serve({
       },
       "/msgs/load": {
          GET: () => {
-            const posts = msgs.query("SELECT text FROM items").all();
+            const posts = db.query("SELECT text FROM msgs").all();
             return Response.json(posts);
+         },
+      },
+      "/user/create": {
+         POST: async (req) => {
+            const { userId, email } = await req.json();
+            createUser.run(userId, "client", email);
+            createUserMsgs(userId);
+            return new Response("ok");
+         },
+      },
+      "/app/swap": {
+         GET: async (req) => {
+            console.log("ahhdshshhh");
+            const htmlFrag = `
+               <div>what up bitches
+               <div>what up bitches</div>
+</div>`;
+            return new Response(htmlFrag, {
+               headers: {
+                  "Content-Type": "text/html",
+               },
+            });
          },
       },
       "/*": (req) => {
@@ -43,45 +65,22 @@ Bun.serve({
    error(er) {
       console.error("this is the error", er);
    },
-   // fetch(req) {
-   //    console.log("we are in the default fetch!");
-   //    const url = new URL(req.url);
-   //    console.log(url);
-   //    let path = url.pathname;
-   //    if (path === "/") {
-   //       path = "/index.html";
-   //       const file = Bun.file(`public${path}`);
-   //       return new Response(file);
-   //    }
-   // },
 });
-// async fetch(req) {
-//    const url = new URL(req.url);
-//
-//    // API route
-//    if (req.method === "POST" && url.pathname === "/api/add") {
-//       const { text } = await req.json();
-//       if (typeof text === "string" && text.trim()) {
-//          insertItem.run(text.trim());
-//       }
-//       return new Response("ok");
-//    }
-//
-//    // Static files
-//    let path = url.pathname;
-//    if (path === "/") {
-//       path = "/index.html";
-//       console.log("we in here");
-//    }
-//
-//    const file = Bun.file(`public${path}`);
-//    console.log("this is the path: ", file);
-//    if (file.size > 0) {
-//       return new Response(file);
-//    }
-//
-//    // console.log("this: ", await file.text());
-//    return new Response("Not Found nugga", { status: 404 });
-// },
 
-// console.log(`Server running at http://localhost:${server.port}`);
+function nonUniqueInDb(erField) {
+   return "error submitting to database";
+}
+
+const inImg = "./img.jpg";
+const outPath = "./out.webp";
+
+async function processImg() {
+   try {
+      await sharp(inImg).resize(320, 240).toFormat("webp").toFile(outPath);
+      console.log("got the job done");
+   } catch (er) {
+      console.error(er);
+   }
+}
+
+// processImg();

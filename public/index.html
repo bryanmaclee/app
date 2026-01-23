@@ -6,18 +6,24 @@
       <link rel="stylesheet" href="/style.css" />
    </head>
    <body>
-      <div id="msgs">
-         <div id="out-field"></div>
-         <div class="input-row">
-            <input id="text" placeholder="Type something..." />
-            <button id="send">send</button>
+      <div id="app">
+         <div id="wayBar">hello dummy</div>
+         <div id="content">hello world</div>
+         <div id="bottom">
+            <div id="msgs">
+               <div id="out-field"></div>
+               <div class="input-row">
+                  <input id="msgText" placeholder="Type something..." />
+                  <button id="send">send</button>
+               </div>
+            </div>
+            <div id="navBar">
+               <div id="navButtons" class="msgs">
+                  <div id="homeBtn" class="navBtn">home</div>
+                  <div id="msgBtn" class="navBtn">msgs</div>
+               </div>
+            </div>
          </div>
-      </div>
-      <div id="navBar">
-         <ul id="navButtons">
-            <li id="homeBtn">home</li>
-            <li id="msgBtn">msgs</li>
-         </ul>
       </div>
       <script src="/app.js"></script>
    </body>
