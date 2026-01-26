@@ -40,10 +40,28 @@ Bun.serve({
             return new Response("ok");
          },
       },
+      "/user/authorize": {
+         POST: async (req) => {
+            const { userId, password } = await req.json();
+            return new Response({ userId, password });
+         },
+      },
       "/app/swap": {
          GET: async (req) => {
             const url = new URL(req.url);
             const htmlFrag = Bun.file("public/msngr.html");
+            // console.log(await htmlFrag.text());
+            return new Response(await htmlFrag, {
+               headers: {
+                  "Content-Type": "text/html",
+               },
+            });
+         },
+      },
+      "/app/load": {
+         GET: async (req) => {
+            const url = new URL(req.url);
+            const htmlFrag = Bun.file("public/app.html");
             // console.log(await htmlFrag.text());
             return new Response(await htmlFrag, {
                headers: {
