@@ -1,7 +1,7 @@
 const CACHE_NAME = "my-app-cache-v1";
 const urlsToCache = ["../public/index.html"];
+const serviceWrkrVer = 2;
 
-// Install event: cache core assets
 self.addEventListener("install", (event) => {
    event.waitUntil(
       caches.open(CACHE_NAME).then((cache) => {
@@ -11,21 +11,17 @@ self.addEventListener("install", (event) => {
    );
 });
 
-// Fetch event: serve assets from cache if available, otherwise fetch from network
 self.addEventListener("fetch", (event) => {
    event.respondWith(
       caches.match(event.request).then((response) => {
-         // If the asset is in the cache, return it
          if (response) {
             return response;
          }
-         // Otherwise, fetch it from the network
          return fetch(event.request);
       }),
    );
 });
 
-// Activate event: clean up old caches (optional, but recommended)
 self.addEventListener("activate", (event) => {
    const cacheWhitelist = [CACHE_NAME];
    event.waitUntil(

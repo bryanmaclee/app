@@ -1,6 +1,28 @@
 import { insertItem, db, createUser, createUserMsgs } from "./db.js";
 import sharp from "sharp";
+import Stripe from "stripe";
+const stripeSecretKey = process.env.stripeSSK;
 
+if (!stripeSecretKey) {
+   throw new Error(
+      "STRIPE_SECRET_KEY is not defined in the environment variables.",
+   );
+}
+
+const stripe = new Stripe(stripeSecretKey, {
+   apiVersion: "2024-06-20", // Use your desired API version
+});
+
+// You can now use the 'stripe' object to make API calls
+console.log(
+   `Stripe instance created with key: ${stripeSecretKey.substring(0, 10)}...`,
+);
+
+const customer = await stripe.customers.create({
+   email: "customer@example.com",
+});
+
+console.log(customer.id);
 const recipId = "them";
 const user = {
    userId: "me",
@@ -46,10 +68,24 @@ Bun.serve({
             return new Response({ userId, password });
          },
       },
+      "/pages/*": {
+         GET: async (req) => {
+            const url = new URL(req.url);
+            const path = url.pathname;
+            console.log(path);
+            const htmlFrag = Bun.file(`public/pages/${path}`);
+            // console.log(await htmlFrag.text());
+            return new Response(await htmlFrag, {
+               headers: {
+                  "Content-Type": "text/html",
+               },
+            });
+         },
+      },
       "/app/swap": {
          GET: async (req) => {
             const url = new URL(req.url);
-            const htmlFrag = Bun.file("public/msngr.html");
+            const htmlFrag = Bun.file("public/pages/msngr.html");
             // console.log(await htmlFrag.text());
             return new Response(await htmlFrag, {
                headers: {
@@ -61,7 +97,7 @@ Bun.serve({
       "/app/load": {
          GET: async (req) => {
             const url = new URL(req.url);
-            const htmlFrag = Bun.file("public/app.html");
+            const htmlFrag = Bun.file("public/pages/app.html");
             // console.log(await htmlFrag.text());
             return new Response(await htmlFrag, {
                headers: {

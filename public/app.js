@@ -8,6 +8,7 @@ function loadGlobals() {
       out: document.getElementById("content"),
       sendButton: document.getElementById("send"),
       auth: document.getElementById("auth"),
+      profile: document.getElementById("profile"),
    };
 
    for (const a in g) {
@@ -15,18 +16,6 @@ function loadGlobals() {
       window[a] = g[a];
    }
 }
-// if ("serviceWorker" in navigator) {
-//    window.addEventListener("load", () => {
-//       navigator.serviceWorker
-//          .register("../sw.js")
-//          .then((registration) => {
-//             console.log("Service worker registered:", registration.scope);
-//          })
-//          .catch((error) => {
-//             console.error("Service worker registration failed:", error);
-//          });
-//    });
-// }
 
 window.addEventListener("load", async () => {
    if ("serviceWorker" in navigator) {
@@ -44,7 +33,7 @@ window.addEventListener("load", async () => {
       headers: { "Content-Type": "text/html; charset=utf-8" },
    });
    console.log("do some thing here");
-   swap("app", await app.text());
+   swap("app", await app.text(), "outer");
    activateMessages();
    usbtn();
 });

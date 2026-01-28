@@ -17,14 +17,15 @@ body {
 }
 
 #wayBar {
+   /* background-color: darkorchid; */
    background-color: #012;
    color: #789;
    height: 1.5rem;
 }
 
-#app {
+.app {
    border: 2px solid pink;
-   height: 96vh;
+   height: 100vh;
    display: flex;
    flex-direction: column;
    justify-content: space-between;
@@ -37,9 +38,9 @@ body {
    /* width: 100vw; */
 }
 
-#content {
-   border: 2px solid pink;
-}
+/* #content { */
+/*    border: 2px solid pink; */
+/* } */
 
 .input-row {
    display: flex;
@@ -120,8 +121,8 @@ body {
 #content {
    display: flex;
    flex-grow: 1;
-   /* border: 2px solid white; */
-   padding: 1rem;
+   border: 2px solid white;
+   padding: 0.25rem;
 }
 
 .navBtn {
